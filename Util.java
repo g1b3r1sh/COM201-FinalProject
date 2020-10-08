@@ -10,7 +10,7 @@ public class Util {
 		int r = d > 180 ? 360 - d : d;
 
 		//calculate sign 
-		int sign = (a - b >= 0 && a - b <= 180) || (a - b <=-180 && a- b>= -360) ? 1 : -1; 
+		int sign = (a - b >= 0 && a - b <= 180) || (a - b <=-180 && a- b>= -360) ? -1 : 1; 
 		r *= sign;
 		return r;
 	}

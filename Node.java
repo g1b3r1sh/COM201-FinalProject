@@ -2,41 +2,72 @@ package finalProject;
 
 import java.util.ArrayList;
 
-// I hate generics
-public class Node<GenNode extends Node<GenNode, GenEdge, NameType>, 
-					GenEdge extends Edge<GenNode, GenEdge>, 
-					NameType> {
-	// Private variable
-	private NameType name;
-	protected ArrayList<GenEdge> edges;
+public class Node {
+	// Private variables
+	private int name;
+	private ArrayList<NodeConnection> connections;
 	
 	// Constructor
-	public Node(NameType name)
+	public Node(int name) 
 	{
 		this.name = name;
-		this.edges = new ArrayList<>();
+		this.connections = new ArrayList<>();
 	}
 	
-	// Public methods
-	public NameType getName() {
+	// Public Methods
+	public int getName()
+	{
 		return this.name;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public GenEdge getEdge(NameType name) throws IllegalArgumentException
+	public boolean connectedTo(Node n)
 	{
-		for (GenEdge edge : this.edges)
-		{
-			if (edge.getOther((GenNode) this).getName().equals(name))
-			{
-				return edge;
-			}
-		}
-		throw new IllegalArgumentException("Node not found");
+		return getEdge(n) != null;
 	}
 	
-	public void addEdge(GenEdge edge)
+	public Edge getEdge(Node n)
 	{
-		this.edges.add(edge);
+		for (NodeConnection connection : this.connections)
+		{
+			if (connection.getEdge().getOther(this) != null)
+			{
+				return connection.getEdge();
+			}
+		}
+		return null;
+	}
+	
+	public void addEdge(Edge edge, int angle)
+	{
+		this.connections.add(new NodeConnection(edge, angle));
+	}
+	
+	public int getAngle(Edge from, Edge to)
+	{
+		NodeConnection fromConn = this.getConnection(from);
+		NodeConnection toConn = this.getConnection(to);
+		return Util.subtractAngles(fromConn.getAngle(), toConn.getAngle());
+	}
+	
+	public int getAngle(Node from, Node to)
+	{
+		return getAngle(this.getEdge(from), this.getEdge(to));
+	}
+	
+	public int getAngle(Node n)
+	{
+		return this.getConnection(this.getEdge(n)).getAngle();
+	}
+	
+	// Private methods
+	private NodeConnection getConnection(Edge edge)
+	{
+		for (NodeConnection connection : this.connections)
+		{
+			if (connection.getEdge() == edge)
+			{
+				return connection;
+			}
+		}
+		return null;
 	}
 }

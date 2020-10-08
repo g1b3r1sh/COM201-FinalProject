@@ -1,27 +1,21 @@
 package finalProject;
 
-public class NodeConnection <GenNode extends Node<GenNode, ?, ?>> {
-	private GenNode node;
-	private int angle;
-	
-	public NodeConnection(GenNode node, int angle)
-	{
-		this.node = node;
+public class NodeConnection {
+	// Private variables
+	Edge edge;
+	int angle;
+
+	public NodeConnection(Edge edge, int angle) {
+		this.edge = edge;
 		this.angle = angle;
 	}
 
-	public GenNode getNode()
-	{
-		return this.node;
+	public Edge getEdge() {
+		return this.edge;
 	}
-	
-	public int getAngle()
-	{
+
+	public int getAngle() {
 		return this.angle;
 	}
-	
-	public int subtract(NodeConnection<GenNode> connection)
-	{
-		return Util.subtractAngles(this.getAngle(), connection.getAngle());
-	}
+
 }
