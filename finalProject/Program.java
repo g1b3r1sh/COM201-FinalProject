@@ -7,7 +7,7 @@ public class Program {
 		 * Graph structure:
 		 * 0
 		 * |
-		 * 1—2
+		 * 1-2
 		 */
 		foo.add(0);
 		foo.add(1);
