@@ -28,7 +28,7 @@ public class Node {
 	{
 		for (NodeConnection connection : this.connections)
 		{
-			if (connection.getEdge().getOther(this) != null)
+			if (connection.getEdge().getOther(this) == n)
 			{
 				return connection.getEdge();
 			}
@@ -41,10 +41,14 @@ public class Node {
 		this.connections.add(new NodeConnection(edge, angle));
 	}
 	
-	public int getAngle(Edge from, Edge to)
+	public int getAngle(Edge from, Edge to) throws NullPointerException
 	{
 		NodeConnection fromConn = this.getConnection(from);
 		NodeConnection toConn = this.getConnection(to);
+        if (fromConn == null || toConn == null)
+        {
+            throw new NullPointerException("Edge does not exist.");
+        }
 		return Util.subtractAngles(fromConn.getAngle(), toConn.getAngle());
 	}
 	
