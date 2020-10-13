@@ -15,15 +15,19 @@ public class Edge {
 		this.n1 = n1;
 		this.n2 = n2;
 		this.weight = weight;
-		this.rooms = rooms;
+		if (rooms == null)
+		{
+			this.rooms = new ArrayList<>();
+		}
+		else
+		{
+			this.rooms = rooms;
+		}
 	}
 	
-	// By default, rooms is empty
-	public Edge(Node n1, Node n2, double weight) {
-		this.n1 = n1;
-		this.n2 = n2;
-		this.weight = weight;
-		this.rooms = new ArrayList<>();
+	// By default, weight is 1
+	public Edge(Node n1, Node n2, ArrayList<Integer> rooms) {
+		this(n1, n2, 1, rooms);
 	}
 	
 	// Public Methods
