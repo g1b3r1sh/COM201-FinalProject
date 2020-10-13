@@ -45,21 +45,30 @@ public class Node {
 	{
 		NodeConnection fromConn = this.getConnection(from);
 		NodeConnection toConn = this.getConnection(to);
-        if (fromConn == null || toConn == null)
+        if (fromConn == null)
         {
-            throw new NullPointerException("Edge does not exist.");
+            throw new NullPointerException("Edge 'from' does not exist.");
+        }
+        else if (toConn == null)
+        {
+        	throw new NullPointerException("Edge 'to' does not exist.");
         }
 		return Util.subtractAngles(fromConn.getAngle(), toConn.getAngle());
 	}
 	
 	public int getAngle(Node from, Node to)
 	{
-		return getAngle(this.getEdge(from), this.getEdge(to));
+		return this.getAngle(this.getEdge(from), this.getEdge(to));
 	}
 	
-	public int getAngle(Node n)
+	public int getAngle(Node n) throws NullPointerException
 	{
-		return this.getConnection(this.getEdge(n)).getAngle();
+		NodeConnection con = this.getConnection(this.getEdge(n));
+		if (con == null)
+		{
+			throw new NullPointerException("Connection to Node does not exist.");
+		}
+		return con.getAngle();
 	}
 	
 	// Private methods
