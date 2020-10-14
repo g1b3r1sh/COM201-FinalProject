@@ -66,6 +66,21 @@ public class Edge {
 		}
 	}
 	
+	// Returns -1 if any room not in Edge
+	public double roomDist(int room1, int room2)
+	{
+		if (!this.rooms.contains(room1) || !this.rooms.contains(room2))
+		{
+			return -1;
+		}
+		
+		// Distance between two rooms in array
+		int arrDist = Math.abs(this.rooms.indexOf(room1) - this.rooms.indexOf(room2));
+		// Distance between adjacent rooms in terms of weight
+		double roomWeight = this.weight / (this.rooms.size() + 1);
+		return roomWeight * arrDist;
+	}
+    
 	// If node is in Edge, return other node
 	public Node getOther(Node node)
 	{
