@@ -1,6 +1,8 @@
 package finalProject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Node {
 	// Private variables
@@ -69,6 +71,11 @@ public class Node {
 			throw new NullPointerException("Connection to Node does not exist.");
 		}
 		return con.getAngle();
+	}
+	
+	public List<NodeConnection> getConnections()
+	{
+		return Collections.unmodifiableList(this.connections);
 	}
 	
 	// Private methods
