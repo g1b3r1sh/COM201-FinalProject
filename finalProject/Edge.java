@@ -80,7 +80,7 @@ public class Edge {
 		double roomWeight = this.weight / (this.rooms.size() + 1);
 		return roomWeight * arrDist;
 	}
-
+    
 	// If node is in Edge, return other node
 	public Node getOther(Node node)
 	{
