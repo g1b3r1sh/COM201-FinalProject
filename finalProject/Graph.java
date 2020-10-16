@@ -66,7 +66,7 @@ public class Graph {
 	}
 	
 	// Returns false if Node already connected or Nodes don't exist
-	public boolean connect(Node n1, Node n2, int angle1, int angle2, int weight, ArrayList<Integer> rooms)
+	public boolean connect(Node n1, Node n2, int angle1, int angle2, double weight, ArrayList<Integer> rooms)
 	{
 		if (n1 == null || n2 == null || n1.connectedTo(n2) == true || n2.connectedTo(n1) == true)
 		{

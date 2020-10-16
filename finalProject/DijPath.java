@@ -78,7 +78,7 @@ public class DijPath {
 				if (e.hasRoom(dest))
 				{
 					// If edge contains dest, adds connection of current Node to dest
-					q.add(new DijPair(new DirEdge(currNode, new Node(dest)), currPair.weight + e.roomDist(dest, currNode)));
+					q.add(new DijPair(new DirEdge(currNode, destNode), currPair.weight + e.roomDist(dest, currNode)));
 				}
 				else
 				{
