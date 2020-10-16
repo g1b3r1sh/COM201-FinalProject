@@ -59,12 +59,15 @@ public class Program {
 				}
 		});
 		
+		// TODO make use of these variables
+		Node originNode = new Node(origin);
+		Node destNode = new Node(dest);
 		// Assert name convension for Nodes and rooms are different
 		assert g.getNode(origin) != null : "Origin is name of node in graph";
 		assert g.getNode(dest) != null : "Dest is name of node in graph";
 		// Represents origin by creating new Node with name of origin - a bit hacky
-		q.add(new DijPair(new DirEdge(new Node(origin), originEdge.getNode1()), originEdge.roomDist(origin, originEdge.getNode1())));
-		q.add(new DijPair(new DirEdge(new Node(origin), originEdge.getNode2()), originEdge.roomDist(origin, originEdge.getNode2())));
+		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode1()), originEdge.roomDist(origin, originEdge.getNode1())));
+		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode2()), originEdge.roomDist(origin, originEdge.getNode2())));
 		ArrayList<DirEdge> visited = new ArrayList<>();
 		
 		while (q.size() > 0)
@@ -76,11 +79,11 @@ public class Program {
 				continue;
 			}
 			visited.add(currPair.edge);
-			if (currNode.getName() == dest)
+			if (currNode == destNode)
 			{
 				ArrayList<Node> path = new ArrayList<>();
 				currNode = getFromNode(visited, currNode);
-				while (currNode.getName() != origin)
+				while (currNode != originNode)
 				{
 					path.add(currNode);
 					currNode = getFromNode(visited, currNode);
@@ -127,5 +130,18 @@ public class Program {
 			}
 		}
 		return null;
+	}
+    
+	private static ArrayList<Node> makePath(ArrayList<DirEdge> dirGraph, Node origin, Node dest)
+	{
+		ArrayList<Node> path = new ArrayList<>();
+		Node currNode = getFromNode(dirGraph, dest);
+		while (currNode != origin)
+		{
+			path.add(currNode);
+			currNode = getFromNode(dirGraph, currNode);
+		}
+		Collections.reverse(path);
+		return path;
 	}
 }
