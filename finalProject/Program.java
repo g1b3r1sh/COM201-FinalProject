@@ -4,31 +4,28 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.Collections;
+import java.util.Arrays;
+
 public class Program {
 	public static void main(String[] args) {
-		Graph foo = new Graph();
+		Graph g = new Graph();
 		/*
 		 * Graph structure:
 		 * 0
-		 * |
+		 * |\
 		 * 1—2
 		 */
-		ArrayList<Integer> bar = new ArrayList<>();
-			bar.add(100);
-			bar.add(101);
-			bar.add(102);
-			bar.add(103);
-		ArrayList<Integer> bar2 = new ArrayList<>();
-			bar2.add(104);
-			bar2.add(105);
-			bar2.add(106);
-			bar2.add(107);
-		foo.add(0);
-		foo.add(1);
-		foo.add(2);
-		foo.connect(foo.getNode(0), foo.getNode(1), 180, 0, 2, bar2);
-		foo.connect(foo.getNode(1), foo.getNode(2), 90, 270, 1, bar);
-		ArrayList<Node> path = findPath(100, 104, foo);
+		ArrayList<Integer> ZO = new ArrayList<>(Arrays.asList(100, 101, 102, 103));
+		ArrayList<Integer> OT = new ArrayList<>(Arrays.asList(104, 105, 106, 107));
+		ArrayList<Integer> ZT = new ArrayList<>(Arrays.asList(108, 109, 110, 111));
+
+		g.add(0);
+		g.add(1);
+		g.add(2);
+		g.connect(g.getNode(0), g.getNode(1), 180, 0, 2, ZO);
+		g.connect(g.getNode(1), g.getNode(2), 90, 270, 1, OT);
+        g.connect(g.getNode(0), g.getNode(2), 135, 315, 1, ZT);
+		ArrayList<Node> path = findPath(103, 111, g);
 		if (path.size() == 0)
 		{
 			System.out.println("No path");
