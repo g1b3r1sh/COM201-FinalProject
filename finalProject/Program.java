@@ -22,10 +22,10 @@ public class Program {
 		g.add(0);
 		g.add(1);
 		g.add(2);
-		g.connect(g.getNode(0), g.getNode(1), 180, 0, 2, ZO);
+		g.connect(g.getNode(0), g.getNode(1), 180, 0, 0.5, ZO);
 		g.connect(g.getNode(1), g.getNode(2), 90, 270, 1, OT);
         g.connect(g.getNode(0), g.getNode(2), 135, 315, 1, ZT);
-		ArrayList<Node> path = new DijPath(g).findPath(103, 111);
+		ArrayList<Node> path = new DijPath(g).findPath(100, 107);
 		if (path.size() == 0)
 		{
 			System.out.println("No path");
