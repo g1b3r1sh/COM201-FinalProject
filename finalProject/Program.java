@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.Collections;
+import java.util.Arrays;
 public class Program {
 	public static void main(String[] args) {
 		Graph foo = new Graph();
@@ -13,16 +14,8 @@ public class Program {
 		 * |
 		 * 1—2
 		 */
-		ArrayList<Integer> bar = new ArrayList<>();
-			bar.add(100);
-			bar.add(101);
-			bar.add(102);
-			bar.add(103);
-		ArrayList<Integer> bar2 = new ArrayList<>();
-			bar2.add(104);
-			bar2.add(105);
-			bar2.add(106);
-			bar2.add(107);
+		ArrayList<Integer> bar = new ArrayList<>(Arrays.asList(100, 101, 102, 103));
+		ArrayList<Integer> bar2 = new ArrayList<>(Arrays.asList(104, 105, 106, 107));
 		foo.add(0);
 		foo.add(1);
 		foo.add(2);
