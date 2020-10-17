@@ -13,7 +13,7 @@ public class DijPath {
 	}
 	
 	// returns null if origin or dest don't exist in graph
-	public ArrayList<Node> findPath(int origin, int dest)
+	public Path findPath(int origin, int dest)
 	{
 		Edge originEdge = this.g.getEdge(origin);
 		// Edge cases
@@ -23,7 +23,7 @@ public class DijPath {
 		}
 		if (originEdge.hasRoom(dest))
 		{
-			return new ArrayList<>();
+			return new Path(origin, dest);
 		}
 		
 		// Create queue of DijPair that sorts ascending by weight
@@ -113,17 +113,17 @@ public class DijPath {
 		return null;
 	}
 	
-	private static ArrayList<Node> makePath(ArrayList<DirEdge> dirGraph, Node origin, Node dest)
+	private static Path makePath(ArrayList<DirEdge> dirGraph, Node origin, Node dest)
 	{
-		ArrayList<Node> path = new ArrayList<>();
+		// Next time, rooms should be strings too
+		Path p = new Path(Integer.parseInt(origin.getName()), Integer.parseInt(dest.getName()));
 		Node currNode = getFromNode(dirGraph, dest);
 		while (currNode != origin)
 		{
-			path.add(currNode);
+			p.add(currNode);
 			currNode = getFromNode(dirGraph, currNode);
 		}
-		Collections.reverse(path);
-		return path;
+		return p;
 	}
 
 }

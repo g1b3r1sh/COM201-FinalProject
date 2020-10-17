@@ -37,6 +37,18 @@ public class Node {
 		}
 		return null;
 	}
+
+    public Edge getEdge(int room)
+    {
+        for (NodeConnection connection : this.connections)
+        {
+            if (connection.getEdge().hasRoom(room))
+            {
+                return connection.getEdge();
+            }
+        }
+        return null;
+    }
 	
 	public void addEdge(Edge edge, int angle)
 	{

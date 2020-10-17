@@ -25,12 +25,12 @@ public class Program {
 		g.connect(g.getNode("0"), g.getNode("1"), 180, 0, 0.5, ZO);
 		g.connect(g.getNode("1"), g.getNode("2"), 90, 270, 1, OT);
         g.connect(g.getNode("0"), g.getNode("2"), 135, 315, 1, ZT);
-		ArrayList<Node> path = new DijPath(g).findPath(100, 107);
-		if (path.size() == 0)
+		Path p = new DijPath(g).findPath(100, 107);
+		if (p.getSize() == 0)
 		{
 			System.out.println("No path");
 		}
-		for (Node n : path)
+		for (Node n : p.getNodes())
 		{
 			System.out.println(n.getName());
 		}
