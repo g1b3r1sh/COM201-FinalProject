@@ -14,7 +14,7 @@ public class Graph {
 	}
 	
 	// Returns null if Node isn't in graph
-	public Node getNode(int name)
+	public Node getNode(String name)
 	{
 		for (Node node : this.nodes)
 		{
@@ -52,7 +52,7 @@ public class Graph {
 	}
 	
 	// Returns false if node already exists
-	public boolean add(int name)
+	public boolean add(String name)
 	{
 		if (this.getNode(name) != null)
 		{

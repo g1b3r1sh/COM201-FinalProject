@@ -38,11 +38,8 @@ public class DijPath {
 		});
 		
 		// Represents origin by creating new Node with name of origin - a bit hacky
-		Node originNode = new Node(origin);
-		Node destNode = new Node(dest);
-		// Assert name convension for Nodes and rooms are different
-		assert this.g.getNode(origin) != null : "Origin is name of node in graph";
-		assert this.g.getNode(dest) != null : "Dest is name of node in graph";
+		Node originNode = new Node(Integer.toString(origin));
+		Node destNode = new Node(Integer.toString(dest));
 		// Q starts with connection from origin to surrounding nodes
 		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode1()), originEdge.roomDist(origin, originEdge.getNode1())));
 		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode2()), originEdge.roomDist(origin, originEdge.getNode2())));

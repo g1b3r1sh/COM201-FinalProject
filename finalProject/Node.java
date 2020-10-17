@@ -6,18 +6,18 @@ import java.util.List;
 
 public class Node {
 	// Private variables
-	private int name;
+	private String name;
 	private ArrayList<NodeConnection> connections;
 	
 	// Constructor
-	public Node(int name) 
+	public Node(String name) 
 	{
 		this.name = name;
 		this.connections = new ArrayList<>();
 	}
 	
 	// Public Methods
-	public int getName()
+	public String getName()
 	{
 		return this.name;
 	}
