@@ -8,14 +8,14 @@ import java.util.Arrays;
 
 public class Program {
 	public static void main(String[] args) {
-		Graph g = new Graph();
+		//Graph g = new Graph();
 		/*
 		 * Graph structure:
 		 * 0
 		 * |\
 		 * 1—2
 		 */
-		ArrayList<Integer> ZO = new ArrayList<>(Arrays.asList(100, 101, 102, 103));
+		/*ArrayList<Integer> ZO = new ArrayList<>(Arrays.asList(100, 101, 102, 103));
 		ArrayList<Integer> OT = new ArrayList<>(Arrays.asList(104, 105, 106, 107));
 		ArrayList<Integer> ZT = new ArrayList<>(Arrays.asList(108, 109, 110, 111));
 
@@ -24,7 +24,10 @@ public class Program {
 		g.add("2");
 		g.connect(g.getNode("0"), g.getNode("1"), 180, 0, 0.5, ZO);
 		g.connect(g.getNode("1"), g.getNode("2"), 90, 270, 1, OT);
-        g.connect(g.getNode("0"), g.getNode("2"), 135, 315, 1, ZT);
+        g.connect(g.getNode("0"), g.getNode("2"), 135, 315, 1, ZT);*/
+		System.out.println("foo");
+		/*XMLGraph xml = new XMLGraph("data/graph.xml");
+		Graph g = xml.constructGraph();
 		Path p = new DijPath(g).findPath(100, 107);
 		if (p.getSize() == 0)
 		{
@@ -33,6 +36,6 @@ public class Program {
 		for (Node n : p.getNodes())
 		{
 			System.out.println(n.getName());
-		}
+		}*/
 	}
 }
