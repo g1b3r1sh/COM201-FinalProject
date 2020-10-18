@@ -26,7 +26,7 @@ public class XMLGraph {
 		}
 	}
 
-	public Graph constructGraph()
+	public Graph constructGraph() throws Exception
 	{
 		Graph g = new Graph();
 		this.addNodes(g);
@@ -40,24 +40,31 @@ public class XMLGraph {
 		for (int i = 0; i < nodes.getLength(); i++)
 		{
 			Element n = (Element) nodes.item(i);
-			g.add(this.getElementInPath(n, "name").getTextContent());
+			g.add(
+				Integer.parseInt(this.getElementInPath(n, "id").getTextContent()), 
+				this.getElementInPath(n, "name").getTextContent()
+			);
 		}
 	}
 	
-	private void connectNodes(Graph g)
+	private void connectNodes(Graph g) throws Exception
 	{
 		NodeList edges = this.doc.getElementsByTagName("edge");
 		for (int i = 0; i < edges.getLength(); i++)
 		{
 			Element e = (Element) edges.item(i);
-			g.connectNodes(
-				g.getNode(this.getElementInPath(e, "left", "name").getTextContent()), 
-				g.getNode(this.getElementInPath(e, "right", "name").getTextContent()), 
-				this.getElementInPath(e, "left", "angle").getTextContent(), 
-				this.getElementInPath(e, "right", "angle").getTextContent(),
-				this.getElementInPath(e, "weight"),
-				this.getTagIntArray(this.getElementInPath(e, "rooms"), "room")
+			boolean success = g.connect(
+				g.getNode(Integer.parseInt(this.getElementInPath(e, "left", "id").getTextContent())), 
+				g.getNode(Integer.parseInt(this.getElementInPath(e, "right", "id").getTextContent())), 
+				Integer.parseInt(this.getElementInPath(e, "left", "angle").getTextContent()), 
+				Integer.parseInt(this.getElementInPath(e, "right", "angle").getTextContent()),
+				Double.parseDouble(this.getElementInPath(e, "weight").getTextContent()),
+				this.getTagArray(this.getElementInPath(e, "rooms"), "room")
 			);
+			if (!success)
+			{
+				throw new Exception("Edge connection failed");
+			}
 		}
 	}
 
@@ -71,15 +78,15 @@ public class XMLGraph {
 		return e;
 	}
 
-	private ArrayList<Integer> getTagIntArray(Element e, String tag)
+	private ArrayList<String> getTagArray(Element e, String tag)
 	{
-		ArrayList<Integer> a = new ArrayList<>();
+		ArrayList<String> a = new ArrayList<>();
 		NodeList es = e.getChildNodes();
 		for (int i = 0; i < es.getLength(); i++)
 		{
 		    if (es.item(i).getNodeName() == tag)
 		    {
-			    a.add(Integer.parseInt(es.item(i).getTextContent()));
+			    a.add(es.item(i).getTextContent());
 		    }
 		}
 		return a;

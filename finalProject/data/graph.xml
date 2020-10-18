@@ -2,10 +2,16 @@
 <graph>
 	<nodes>
 		<node>
-			<name>0</name>
+			<id>0</id>
+			<name>A</name>
 		</node>
 		<node>
-			<name>1</name>
+			<id>1</id>
+			<name>B</name>
+		</node>
+		<node>
+			<id>2</id>
+			<name>C</name>
 		</node>
 	</nodes>
 	<edges>
@@ -13,11 +19,11 @@
 			<info>
 				<weight>0.5</weight>
 				<left>
-					<name>0</name>
+					<id>0</id>
 					<angle>180</angle>
 				</left>
 				<right>
-					<name>1</name>
+					<id>1</id>
 					<angle>0</angle>
 				</right>
 			</info>
@@ -32,11 +38,11 @@
 			<info>
 				<weight>1</weight>
 				<left>
-					<name>1</name>
+					<id>1</id>
 					<angle>90</angle>
 				</left>
 				<right>
-					<name>2</name>
+					<id>2</id>
 					<angle>270</angle>
 				</right>
 			</info>
@@ -51,11 +57,11 @@
 			<info>
 				<weight>1</weight>
 				<left>
-					<name>0</name>
+					<id>0</id>
 					<angle>135</angle>
 				</left>
 				<right>
-					<name>2</name>
+					<id>2</id>
 					<angle>315</angle>
 				</right>
 			</info>

@@ -7,13 +7,15 @@ import java.util.PriorityQueue;
 
 public class DijPath {
 	Graph g;
+	final int ORIGIN_NUM = -1;
+	final int DEST_NUM = -2;
 
 	public DijPath(Graph g) {
 		this.g = g;
 	}
 	
 	// returns null if origin or dest don't exist in graph
-	public Path findPath(int origin, int dest)
+	public Path findPath(String origin, String dest)
 	{
 		Edge originEdge = this.g.getEdge(origin);
 		// Edge cases
@@ -38,8 +40,8 @@ public class DijPath {
 		});
 		
 		// Represents origin by creating new Node with name of origin - a bit hacky
-		Node originNode = new Node(Integer.toString(origin));
-		Node destNode = new Node(Integer.toString(dest));
+		Node originNode = new Node(this.ORIGIN_NUM, origin);
+		Node destNode = new Node(this.DEST_NUM, dest);
 		// Q starts with connection from origin to surrounding nodes
 		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode1()), originEdge.roomDist(origin, originEdge.getNode1())));
 		q.add(new DijPair(new DirEdge(originNode, originEdge.getNode2()), originEdge.roomDist(origin, originEdge.getNode2())));
@@ -115,8 +117,7 @@ public class DijPath {
 	
 	private static Path makePath(ArrayList<DirEdge> dirGraph, Node origin, Node dest)
 	{
-		// Next time, rooms should be strings too
-		Path p = new Path(Integer.parseInt(origin.getName()), Integer.parseInt(dest.getName()));
+		Path p = new Path(origin.getName(), dest.getName());
 		Node currNode = getFromNode(dirGraph, dest);
 		while (currNode != origin)
 		{

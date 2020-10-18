@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Graph {
 	// Private variables
-	private ArrayList<Node> nodes;
+	// TODO set these variables to private later
+	public ArrayList<Node> nodes;
 	public ArrayList<Edge> edges;
 	
 	public Graph()
@@ -14,11 +15,23 @@ public class Graph {
 	}
 	
 	// Returns null if Node isn't in graph
+	public Node getNode(int id)
+	{
+		for (Node node : this.nodes)
+		{
+			if (node.getId() == id)
+			{
+				return node;
+			}
+		}
+		return null;
+	}
+
 	public Node getNode(String name)
 	{
 		for (Node node : this.nodes)
 		{
-			if (node.getName() == name)
+			if (node.getName().equals(name))
 			{
 				return node;
 			}
@@ -27,7 +40,7 @@ public class Graph {
 	}
 	
 	// Returns null if room isn't in Graph
-	public Edge getEdge(int room)
+	public Edge getEdge(String room)
 	{
 		for (Edge edge : this.edges)
 		{
@@ -52,21 +65,21 @@ public class Graph {
 	}
 	
 	// Returns false if node already exists
-	public boolean add(String name)
+	public boolean add(int id, String name)
 	{
-		if (this.getNode(name) != null)
+		if (this.getNode(id) != null)
 		{
 			return false;
 		}
 		else
 		{
-			this.nodes.add(new Node(name));
+			this.nodes.add(new Node(id, name));
 			return true;
 		}
 	}
 	
 	// Returns false if Node already connected or Nodes don't exist
-	public boolean connect(Node n1, Node n2, int angle1, int angle2, double weight, ArrayList<Integer> rooms)
+	public boolean connect(Node n1, Node n2, int angle1, int angle2, double weight, ArrayList<String> rooms)
 	{
 		if (n1 == null || n2 == null || n1.connectedTo(n2) == true || n2.connectedTo(n1) == true)
 		{

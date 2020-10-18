@@ -7,11 +7,11 @@ import java.util.List;
 public class Edge {
 	// Private Variables
 	private double weight;
-	private ArrayList<Integer> rooms;
+	private ArrayList<String> rooms;
 	private Node n1;
 	private Node n2;
 
-	public Edge(Node n1, Node n2, double weight, ArrayList<Integer> rooms) {
+	public Edge(Node n1, Node n2, double weight, ArrayList<String> rooms) {
 		this.n1 = n1;
 		this.n2 = n2;
 		this.weight = weight;
@@ -26,7 +26,7 @@ public class Edge {
 	}
 	
 	// By default, weight is 1
-	public Edge(Node n1, Node n2, ArrayList<Integer> rooms) {
+	public Edge(Node n1, Node n2, ArrayList<String> rooms) {
 		this(n1, n2, 1, rooms);
 	}
 	
@@ -36,18 +36,18 @@ public class Edge {
 		return this.weight;
 	}
 	
-	public List<Integer> getRooms()
+	public List<String> getRooms()
 	{
 		return Collections.unmodifiableList(this.rooms);
 	}
 	
-	public boolean hasRoom(int room)
+	public boolean hasRoom(String room)
 	{
 		return this.rooms.contains(room);
 	}
 	
 	// Returns -1 if Node or room not in Edge
-	public double roomDist(int room, Node n)
+	public double roomDist(String room, Node n)
 	{
 		if (!this.rooms.contains(room) || !this.connects(n))
 		{
@@ -67,7 +67,7 @@ public class Edge {
 	}
 	
 	// Returns -1 if any room not in Edge
-	public double roomDist(int room1, int room2)
+	public double roomDist(String room1, String room2)
 	{
 		if (!this.rooms.contains(room1) || !this.rooms.contains(room2))
 		{

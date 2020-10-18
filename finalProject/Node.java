@@ -6,21 +6,29 @@ import java.util.List;
 
 public class Node {
 	// Private variables
+	private int id;
 	private String name;
 	private ArrayList<NodeConnection> connections;
 	
 	// Constructor
-	public Node(String name) 
+	public Node(int id, String name) 
 	{
+		this.id = id;
 		this.name = name;
 		this.connections = new ArrayList<>();
 	}
 	
 	// Public Methods
+	public int getId()
+	{
+		return this.id;
+	}
+
 	public String getName()
 	{
 		return this.name;
 	}
+
 	public boolean connectedTo(Node n)
 	{
 		return getEdge(n) != null;
@@ -38,7 +46,7 @@ public class Node {
 		return null;
 	}
 
-    public Edge getEdge(int room)
+    public Edge getEdge(String room)
     {
         for (NodeConnection connection : this.connections)
         {

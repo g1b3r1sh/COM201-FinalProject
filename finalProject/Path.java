@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class Path {
     private Stack<Node> nodes;
-    private int origin;
-    private int dest;
+    private String origin;
+    private String dest;
 
-    public Path(int origin, int dest)
+    public Path(String origin, String dest)
     {
         this.origin = origin;
         this.dest = dest;
