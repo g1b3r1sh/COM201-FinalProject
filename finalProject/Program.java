@@ -26,7 +26,7 @@ public class Program {
 		g.connect(g.getNode("1"), g.getNode("2"), 90, 270, 1, OT);
         g.connect(g.getNode("0"), g.getNode("2"), 135, 315, 1, ZT);*/
 		// Note: relative filepaths are relative to current dictionary in console
-		XMLGraph xml = new XMLGraph("finalProject/data/graph.xml");
+		XMLGraph xml = new XMLGraph("finalProject/data/example_graph.xml");
 		Graph g = xml.constructGraph();
 		Path p = new DijPath(g).findPath("100", "107");
 		if (p.getSize() == 0)
