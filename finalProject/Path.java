@@ -1,11 +1,15 @@
 package finalProject;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
 public class Path {
-    private Stack<Node> nodes;
+	// For some reason, Stack is iterated like a normal List (FIFO instead of FILO)
+	// Therefore, a Deque will simulate a Stack
+    private Deque<Node> nodes;
     private String origin;
     private String dest;
 
@@ -13,7 +17,7 @@ public class Path {
     {
         this.origin = origin;
         this.dest = dest;
-        nodes = new Stack<>();
+        nodes = new ArrayDeque<>();
     }
 
     public void add(Node n)
@@ -28,11 +32,18 @@ public class Path {
 
 	public List<Node> getNodes()
 	{
-		return Collections.unmodifiableList(this.nodes);
+		return new ArrayList<Node>(this.nodes);
 	}
 
-    /*public ArrayList<String> makeOutput()
+    public ArrayList<String> makeOutput()
     {
-        
-    }*/
+		ArrayList<String> output = new ArrayList<String>();
+		output.add(String.format("Start at %s.", origin));
+		for (Node n : this.nodes)
+		{
+			output.add(String.format("Go to %s.", n.getName()));
+		}
+		output.add(String.format("Go to %s.", dest));
+		return output;
+	}
 }
