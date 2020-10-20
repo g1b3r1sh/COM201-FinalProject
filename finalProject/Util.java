@@ -1,9 +1,17 @@
 package finalProject;
 
+/**
+ * Utility class containing useful static methods for Program.
+ */
 public class Util {
-	// Returns smallest angle between a1 to a2
-	// If clockwise, returns positive. If counterclockwise, returns negative
-	// Algorithm by M. Usman Khan from https://stackoverflow.com/questions/7570808/how-do-i-calculate-the-difference-of-two-angle-measures
+	/**
+	 * Returns angle between two angles. Taken from https://stackoverflow.com/questions/7570808/how-do-i-calculate-the-difference-of-two-angle-measures
+	 * 
+	 * @author M. Usman Khan
+	 * @param a First angle.
+	 * @param b Second angle.
+	 * @return Smallest angle between a1 to a2. If clockwise, returns positive. If counterclockwise, returns negative.
+	 */
 	public static int subtractAngles(int a, int b)
 	{
 		int d = Math.abs(a - b) % 360; 
