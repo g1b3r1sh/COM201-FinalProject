@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 public class Graph {
 	// Private variables
-	// TODO set these variables to private later
-	public ArrayList<Node> nodes;
-	public ArrayList<Edge> edges;
+	private ArrayList<Node> nodes;
+	private ArrayList<Edge> edges;
 	
 	public Graph()
 	{
