@@ -15,6 +15,7 @@ public class Program {
 		// Note: relative filepaths are relative to current dictionary in console
 		// Note: use absolute filepath in Eclipse
 		// There is probably another way to do this using FileLocator or something
+		// NOTE: IF GRAPH DOESN'T LOAD, SET BELOW PATH TO ABSOLUTE PATH TO FILE
 		final String GRAPH_PATH = "finalProject/data/graph.xml";
 		/*
 		 * example_graph.xml structure:
@@ -24,7 +25,16 @@ public class Program {
 		 */
 
 		// Loads graph from XML file
-		XMLGraph xml = new XMLGraph(GRAPH_PATH);
+		XMLGraph xml;
+		try
+		{
+			xml = new XMLGraph(GRAPH_PATH);
+		}
+		catch (Exception e)
+		{
+			System.out.println("File can't be opened - make sure GRAPH_PATH variable is set to filepath of xml file.");
+			return;
+		}
 		// Creates Graph object using XML file
 		Graph g = xml.constructGraph();
 		
